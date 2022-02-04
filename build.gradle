@@ -1,5 +1,6 @@
 plugins {
 	id 'java-library'
+	id 'application'
 	id 'eclipse'
 	id 'idea'
     id 'org.javamodularity.moduleplugin' version '1.8.10'
@@ -26,3 +27,9 @@ compileJava {
         ]
     }
 }
+
+application {
+    mainModule = 'javamodulemigration'
+    mainClass = 'javamodulesmigration.MigrationTestApp' 
+}
+
