@@ -22,12 +22,22 @@ dependencies {
   )
 }
 
-patchModules.config = [
-		//fix jsr305 split packages by patching it to java.annoation module 
-        "java.annotation=jsr305-3.0.2.jar",
-        //fix mongo legacy driver (can be removed after CRB-1191) 
-        "org.mongodb.driver.core=mongodb-driver-legacy-4.4.1.jar"
-]
+compileJava {
+    moduleOptions {
+        addExports = [
+            "java.annotation/javax.annotation.concurrent": moduleName
+        ]
+    }
+}
+
+// fix jsr305 split packages by patching it to java.annoation module 
+modularity.patchModule("java.annotation", "jsr305-3.0.2.jar")
+
+//fix mongo legacy driver (can be removed after CRB-1191) 
+modularity.patchModule("org.mongodb.driver.core", "mongodb-driver-legacy-4.4.1.jar")
+
+// apply module fixes to Eclipse classpath file as well 
+modularity.improveEclipseClasspathFile()
 
 // make the immutables processor generated build-subfolder a source-folder in Eclipse
 eclipse {
