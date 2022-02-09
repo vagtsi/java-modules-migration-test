@@ -1,35 +1,24 @@
 plugins {
-	id 'java-library'
-	id 'application'
-	id 'eclipse'
-	id 'idea'
-    id 'org.javamodularity.moduleplugin' version '1.8.10'
+    id 'org.javamodularity.moduleplugin' version '1.8.10' apply false
 }
 
-repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
+//defines configurations with a global scope for all subprojects
+subprojects {
+	apply plugin: 'java-library'
+	apply plugin: 'org.javamodularity.moduleplugin'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+	
+	repositories {
+	    // Use Maven Central for resolving dependencies.
+	    mavenCentral()
+	}
+	
+	dependencies {
+	    // Use JUnit Jupiter for testing.
+	    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+	    
+		implementation 'org.slf4j:slf4j-api:1.7.32'
+		implementation 'ch.qos.logback:logback-classic:1.2.9'
+	}
 }
-
-dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
-    
-	implementation 'org.slf4j:slf4j-api:1.7.32'
-	implementation 'ch.qos.logback:logback-classic:1.2.9'
-	implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.2")
-}
-
-compileJava {
-    moduleOptions {
-        addReads = [
-            javamodulemigration: 'ALL-UNNAMED'
-        ]
-    }
-}
-
-application {
-    mainModule = 'javamodulemigration'
-    mainClass = 'javamodulesmigration.MigrationTestApp' 
-}
-

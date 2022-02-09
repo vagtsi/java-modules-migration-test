@@ -1,4 +1,4 @@
-package javamodulesmigration;
+package javamodulesmigration.elasticsearch;
 
 import org.elasticsearch.node.Node;
 import org.slf4j.Logger;

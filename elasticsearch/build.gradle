@@ -1,0 +1,12 @@
+
+dependencies {
+  implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.2")
+}
+
+compileJava {
+    moduleOptions {
+        addReads = [
+            javamodulemigration: 'ALL-UNNAMED'
+        ]
+    }
+}
