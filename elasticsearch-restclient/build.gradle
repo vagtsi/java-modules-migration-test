@@ -1,0 +1,31 @@
+apply plugin: 'com.github.johnrengelman.shadow'
+
+dependencies {
+  implementation ("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.2") {
+      exclude group: 'org.apache.logging.log4j', module: 'log4j-api'
+      exclude group: 'joda-time', module: '*'
+      exclude group: 'com.fasterxml.jackson.core', module: '*'
+      exclude group: 'com.fasterxml.jackson.dataformat', module: '*'
+	  exclude group: 'org.apache.httpcomponents', module: '*'
+      exclude group: 'commons-codec', module: 'commons-codec'
+      exclude group: 'commons-logging', module: 'commons-logging'
+      exclude group: 'com.github.spullara.mustache.java', module: 'compiler'
+      exclude group: 'org.yaml', module: 'snakeyaml'
+  }
+}
+
+shadowJar {
+  //configurations = [project.configurations.runtimeClasspath]
+  mergeServiceFiles()
+}
+
+
+// define valid module name to be referenced by java modules (plugins)
+jar {
+     manifest {
+       attributes('Automatic-Module-Name': 'de.vagtsi.elasticsearch.restclient')
+   }
+}
+
+// execute shadowJar on build task implicitly
+tasks.build.dependsOn tasks.shadowJar

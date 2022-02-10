@@ -1,0 +1,38 @@
+plugins {
+    id 'application'
+    id 'org.javamodularity.moduleplugin'
+}
+
+dependencies {
+	// use the custom uber jar with added Automatic-Module-Name
+  	implementation fileTree(dir: "${project(':elasticsearch-restclient').buildDir}/libs", include: ['*all.jar'])
+  	/* {
+  		builtBy (':elasticsearch-restclient:build')
+  	}*/
+  	
+  	implementation (
+  		// apacht http client required by elastic search rest client
+  		'org.apache.httpcomponents:httpasyncclient:4.1.5',
+  		
+  	    // logging
+		'org.slf4j:slf4j-api:1.7.32',
+		'ch.qos.logback:logback-classic:1.2.9'
+	)
+}
+
+// apply module fixes to Eclipse classpath file
+modularity.improveEclipseClasspathFile()
+
+application {
+    mainModule = 'javamodulemigration.elasticsearch.app'
+    mainClass = 'javamodulesmigration.elasticsearch.ElasticsearchTestApp' 
+}
+
+// put elasticsearch project on modulepath
+/* 
+eclipse.classpath.file {
+    whenMerged {
+        entries.find { it.path == '/elasticsearch-restclient' }.entryAttributes['module'] = 'true'
+    }
+}
+*/

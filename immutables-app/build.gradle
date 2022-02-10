@@ -1,3 +1,5 @@
+apply plugin: 'org.javamodularity.moduleplugin'
+
 dependencies {
     constraints {
 	   // override mongo legacy driver 4.3.1 transiently referenced by immutables with invalid Automatic-Module-Name   
@@ -13,8 +15,15 @@ dependencies {
 			        // java.validation
     				"javax.validation:validation-api:2.0.1.Final",
     				// package javax.validation.concurrent (to be patched to java.validation) 
-    				"com.google.code.findbugs:jsr305:3.0.2"
+    				"com.google.code.findbugs:jsr305:3.0.2",
+    				// logging
+					"org.slf4j:slf4j-api:1.7.32",
+					"ch.qos.logback:logback-classic:1.2.9"
+    
     )
+    
+  // Use JUnit Jupiter for testing.
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
   annotationProcessor( "org.immutables:value:2.9.0",
   					   "org.immutables:mongo:2.9.0",

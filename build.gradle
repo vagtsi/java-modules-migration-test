@@ -1,12 +1,11 @@
 plugins {
     id 'org.javamodularity.moduleplugin' version '1.8.10' apply false
-    id 'org.anarres.jarjar:jarjar-gradle' version '1.0.1'
+    id 'com.github.johnrengelman.shadow' version '7.1.2' apply false
 }
 
 //defines configurations with a global scope for all subprojects
 subprojects {
 	apply plugin: 'java-library'
-	apply plugin: 'org.javamodularity.moduleplugin'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
 	
@@ -15,11 +14,4 @@ subprojects {
 	    mavenCentral()
 	}
 	
-	dependencies {
-	    // Use JUnit Jupiter for testing.
-	    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
-	    
-		implementation 'org.slf4j:slf4j-api:1.7.32'
-		implementation 'ch.qos.logback:logback-classic:1.2.9'
-	}
 }
