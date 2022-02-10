@@ -1,5 +1,6 @@
 plugins {
     id 'org.javamodularity.moduleplugin' version '1.8.10' apply false
+    id 'org.anarres.jarjar:jarjar-gradle' version '1.0.1'
 }
 
 //defines configurations with a global scope for all subprojects
