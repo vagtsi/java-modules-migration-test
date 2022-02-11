@@ -4,13 +4,12 @@ plugins {
 }
 
 dependencies {
-	// use the custom uber jar with added Automatic-Module-Name
-  	//implementation fileTree(dir: "${project(':elasticsearch-restclient').buildDir}/libs", include: ['*all.jar'])
-  	implementation project(path: ':elasticsearch-restclient', configuration: 'shadow')
-  	/* {
-  		builtBy (':elasticsearch-restclient:build')
-  	}*/
+	// use the custom uber jar binary with added Automatic-Module-Name
+  	implementation fileTree(dir: "${project(':elasticsearch-restclient').buildDir}/libs", include: ['*all.jar'])
   	
+  	// reference the project: does not work for eclipse as it does not find the 'Automatic-Module-Name'! 
+  	//implementation project(path: ':elasticsearch-restclient', configuration: 'shadow')
+  	 
   	implementation (
   		// apacht http client required by elastic search rest client
   		'org.apache.httpcomponents:httpasyncclient:4.1.5',
@@ -30,7 +29,7 @@ application {
 }
 
 // put elasticsearch project on modulepath
-/* 
+/*
 eclipse.classpath.file {
     whenMerged {
         entries.find { it.path == '/elasticsearch-restclient' }.entryAttributes['module'] = 'true'
