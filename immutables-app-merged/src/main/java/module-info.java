@@ -1,4 +1,4 @@
-module javamodulemigration.immutables {
+module javamodulemigration.immutables.merged {
   // logging
   requires org.slf4j;
   

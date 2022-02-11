@@ -1,4 +1,4 @@
-module javamodulemigration.immutables {
+module javamodulemigration.immutables.patched {
   // logging
   requires org.slf4j;
   
