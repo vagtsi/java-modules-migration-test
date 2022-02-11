@@ -2,4 +2,5 @@
 rootProject.name = 'javamodulesmigration'
 include('elasticsearch-restclient')
 include('elasticsearch-app')
-include('immutables-app')
+include('immutables-app-patched')
+include('immutables-app-merged')

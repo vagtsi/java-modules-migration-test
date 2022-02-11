@@ -5,7 +5,8 @@ plugins {
 
 dependencies {
 	// use the custom uber jar with added Automatic-Module-Name
-  	implementation fileTree(dir: "${project(':elasticsearch-restclient').buildDir}/libs", include: ['*all.jar'])
+  	//implementation fileTree(dir: "${project(':elasticsearch-restclient').buildDir}/libs", include: ['*all.jar'])
+  	implementation project(path: ':elasticsearch-restclient', configuration: 'shadow')
   	/* {
   		builtBy (':elasticsearch-restclient:build')
   	}*/
