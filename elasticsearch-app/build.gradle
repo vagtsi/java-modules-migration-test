@@ -4,11 +4,10 @@ plugins {
 }
 
 dependencies {
-	// use the custom uber jar binary with added Automatic-Module-Name
+  	// reference the rest-client shadow/uber jar (defined task dependency by 'shadow' configuraton automatically)
+  	implementation project(path: ':elasticsearch-restclient', configuration: 'shadow')
+  	// workaround for eclipse classpath generation only: depend on library in order to find the 'Automatic-Module-Name'! 
   	implementation fileTree(dir: "${project(':elasticsearch-restclient').buildDir}/libs", include: ['*all.jar'])
-  	
-  	// reference the project: does not work for eclipse as it does not find the 'Automatic-Module-Name'! 
-  	//implementation project(path: ':elasticsearch-restclient', configuration: 'shadow')
   	 
   	implementation (
   		// apacht http client required by elastic search rest client

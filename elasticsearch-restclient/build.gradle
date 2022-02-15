@@ -26,6 +26,3 @@ jar {
        attributes('Automatic-Module-Name': 'de.vagtsi.elasticsearch.restclient')
    }
 }
-
-// execute shadowJar on build task implicitly
-tasks.build.dependsOn tasks.shadowJar
