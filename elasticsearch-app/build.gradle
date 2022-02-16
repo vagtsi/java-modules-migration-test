@@ -8,6 +8,7 @@ dependencies {
   	implementation project(path: ':elasticsearch-restclient', configuration: 'shadow')
   	// workaround for eclipse classpath generation only: depend on library in order to find the 'Automatic-Module-Name'! 
   	implementation fileTree(dir: "${project(':elasticsearch-restclient').buildDir}/libs", include: ['*all.jar'])
+  	//implementation ("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.2")
   	 
   	implementation (
   		// apacht http client required by elastic search rest client
@@ -15,7 +16,9 @@ dependencies {
   		
   	    // logging
 		'org.slf4j:slf4j-api:1.7.32',
-		'ch.qos.logback:logback-classic:1.2.9'
+		'ch.qos.logback:logback-classic:1.2.9',
+		'org.apache.logging.log4j:log4j-to-slf4j:2.17.1',
+		'com.fasterxml.jackson.core:jackson-databind:2.8.11'
 	)
 }
 
